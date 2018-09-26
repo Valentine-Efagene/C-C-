@@ -14,8 +14,7 @@ char *replaceWord(const char *, const char *, const char *);
 void display(char *, HWND);
 char *replaceChar(char *, char, char);
 HWND textField;
-char * originalStr = "A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z";
-char * str;
+char * str = "A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z";
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
@@ -91,13 +90,13 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     switch (message)                  /* handle the messages */
     {
         case WM_CREATE:
-            display(originalStr, hwnd);
+            display(str, hwnd);
 
         case WM_CHAR:
             if(wParam > 32 && wParam < 127) {
-                str = replaceChar(originalStr, (char) wParam, '_');
+                str = replaceChar(str, (char) wParam, '_');
                 printf("%s", str);
-                //display(str, hwnd);
+                display(str, hwnd);
             }
             break;
         case WM_DESTROY:
@@ -154,14 +153,20 @@ void display(char * str, HWND hwnd){
 }
 
 char *replaceChar(char *s, char oldChar, char newChar){
-    int i;
-    char * result = (char *) malloc(strlen(s));
+    int i, j = 0, cnt = 0;
 
     for(i = 0; i < strlen(s); i++) {
         if(s[i] == oldChar) {
-            result[i] = newChar;
-        }else{
-            result[i] = s[i];
+            cnt++;
+        }
+    }
+
+    char * result = (char *) malloc(strlen(s) - cnt);
+
+    for(i = 0; i < strlen(s); i++) {
+        if(s[i] != oldChar) {
+            result[j] = s[i];
+            j++;
         }
     }
     return result;

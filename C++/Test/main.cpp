@@ -8,14 +8,20 @@
 // Function to replace a string with another
 // string
 char *replaceChar(char *s, char oldChar, char newChar){
-    int i;
-    char * result = (char *) malloc(strlen(s));
+    int i, j = 0, cnt = 0;
 
     for(i = 0; i < strlen(s); i++) {
         if(s[i] == oldChar) {
-            result[i] = newChar;
-        }else{
-            result[i] = s[i];
+            cnt++;
+        }
+    }
+
+    char * result = (char *) malloc(strlen(s) - cnt);
+
+    for(i = 0; i < strlen(s); i++) {
+        if(s[i] != oldChar) {
+            result[j] = s[i];
+            j++;
         }
     }
     return result;
@@ -23,7 +29,7 @@ char *replaceChar(char *s, char oldChar, char newChar){
 
 // Driver Program
 int main(){
-    char * originalStr = "AASFESVDSVSD";
+    char * originalStr = "A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z";
     char c = 'A';
     char d = '_';
     char * result;
