@@ -6,11 +6,13 @@
 
 #include <tchar.h>
 #include <windows.h>
+#include <stdio.h>
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 char *replaceWord(const char *, const char *, const char *);
 void display(char *, HWND);
+char *replaceChar(char *, char, char);
 HWND textField;
 char * originalStr = "A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z";
 char * str;
@@ -88,23 +90,16 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     TCHAR ch;
     switch (message)                  /* handle the messages */
     {
-    case WM_CREATE:
-        textField = CreateWindow("STATIC",
-                             originalStr,
-                             WS_VISIBLE|WS_CHILD|WS_BORDER,
-                             20, 20, 300, 25,
-                             hwnd, NULL, NULL, NULL);
+        case WM_CREATE:
+            display(originalStr, hwnd);
 
-    case WM_CHAR:
-        switch(wParam){
-            case 0x46:
-                str = replaceWord(originalStr, "A", "");
-                display(str, hwnd);
-                break;
-        default:
+        case WM_CHAR:
+            if(wParam > 32 && wParam < 127) {
+                str = replaceChar(originalStr, (char) wParam, '_');
+                printf("%s", str);
+                //display(str, hwnd);
+            }
             break;
-        }
-        break;
         case WM_DESTROY:
             PostQuitMessage (0);       /* send a WM_QUIT to the message queue */
             break;
@@ -156,4 +151,18 @@ void display(char * str, HWND hwnd){
                              WS_VISIBLE|WS_CHILD|WS_BORDER,
                              20, 20, 300, 25,
                              hwnd, NULL, NULL, NULL);
+}
+
+char *replaceChar(char *s, char oldChar, char newChar){
+    int i;
+    char * result = (char *) malloc(strlen(s));
+
+    for(i = 0; i < strlen(s); i++) {
+        if(s[i] == oldChar) {
+            result[i] = newChar;
+        }else{
+            result[i] = s[i];
+        }
+    }
+    return result;
 }
