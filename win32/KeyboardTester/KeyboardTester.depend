@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1537879984 source:c:\users\valentyne\documents\codeblocks\c++\keyboardtester\main.cpp
+	<tchar.h>
+	<windows.h>
+

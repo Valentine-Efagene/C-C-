@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1216412684 source:c:\users\valentyne\documents\codeblocks\win32\org\winprog\source\app_three\app_three.c
+	<windows.h>
+	<commctrl.h>
+	"resource.h"
+
+1216412684 c:\users\valentyne\documents\codeblocks\win32\org\winprog\source\app_three\resource.h
+
+1216412684 source:c:\users\valentyne\documents\codeblocks\win32\org\winprog\source\app_three\app_three.rc
+	"resource.h"
+	"windows.h"
+

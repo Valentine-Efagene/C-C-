@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1216412682 source:c:\users\valentyne\documents\codeblocks\win32\org\winprog\source\menu_one\menu_one.rc
+	"resource.h"
+	"windows.h"
+
+1216412682 c:\users\valentyne\documents\codeblocks\win32\org\winprog\source\menu_one\resource.h
+
+1537653111 source:c:\users\valentyne\documents\codeblocks\win32\org\winprog\source\menu_one\menu_one.c
+	<windows.h>
+	"resource.h"
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1537957900 source:c:\users\valentyne\documents\codeblocks\c++\replacesubstring\main.cpp
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+

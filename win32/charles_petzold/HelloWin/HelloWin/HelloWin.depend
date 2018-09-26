@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1514140582 source:c:\users\valentyne\documents\codeblocks\win32\charles_petzold\hellowin\hellowin\main.cpp
+	<tchar.h>
+	<windows.h>
+
