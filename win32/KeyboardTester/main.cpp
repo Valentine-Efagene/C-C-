@@ -12,7 +12,7 @@ char *replaceWord(const char *, const char *, const char *);
 char *replaceChar(char *, char, char);
 void display(char *, HWND);
 char *replaceChar(char *, char);
-char * str1 = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'";
+char * str1 = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\\.,[`;\'";
 char * str2 = " TAB_PAGEUP_PAGEDOWN_ESC_DELETE_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END BACKSPACE_PRINTSCREEN_INSERT_LWIN_SHIFT_CTRL F1_F2_F3_F4_F5_F6_F7_F8_F9_F10_F11_F12";
 
 /*  Make the class name into a global variable  */
@@ -280,6 +280,10 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 display(str1, hwnd);
                 break;
             case 0x2C:
+                str1 = replaceChar(str1, (char) wParam, '_');
+                display(str1, hwnd);
+                break;
+            case 0x2E:
                 str1 = replaceChar(str1, (char) wParam, '_');
                 display(str1, hwnd);
                 break;
