@@ -129,7 +129,12 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     break;
 
                 case VK_DELETE:
-                    str = replaceWord(str, "DELETE", "_");
+                    str = replaceWord(str, "DEL", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_RETURN:
+                    str = replaceWord(str, "ENTER", "_");
                     display(str, hwnd);
                     break;
 

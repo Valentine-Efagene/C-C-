@@ -77,7 +77,7 @@ char *replaceChar(char *s, char charToReplace, char replacement){
    char * result = (char *) malloc(strlen(s));
     int i = 0, cnt = 0;
 
-    if( (int) charToReplace > 65 && (int) charToReplace < 91 ) {
+    if( (int) charToReplace > 64 && (int) charToReplace < 91 ) {
         return s;
     }else {
         for(i = 0; i < strlen(s); i++) {
