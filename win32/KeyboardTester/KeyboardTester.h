@@ -5,8 +5,11 @@
 #include <windows.h>
 #include <stdio.h>
 
-#define TEXT_WIDTH 1000
-#define TEXT_HEIGHT 20
+#define TEXT_WIDTH 600
+#define TEXT_HEIGHT 100
+
+#define TEXT_POS_X 10
+#define TEXT1_POS_Y 10
 
 HWND textField;
 
@@ -48,8 +51,16 @@ char *replaceWord(const char *s, const char *oldW, const char *newW){
 void display(char * str, HWND hwnd){
     textField = CreateWindow("STATIC",
                              str,
-                             WS_VISIBLE|WS_CHILD,
-                             10, 10, TEXT_WIDTH, TEXT_HEIGHT,
+                             WS_VISIBLE|WS_CHILD|SS_LEFT,
+                             TEXT_POS_X, TEXT1_POS_Y, TEXT_WIDTH, TEXT_HEIGHT,
+                             hwnd, NULL, NULL, NULL);
+}
+
+void display2(char * str, HWND hwnd){
+    textField = CreateWindow("STATIC",
+                             str,
+                             WS_VISIBLE|WS_CHILD|SS_LEFT,
+                             TEXT_POS_X, TEXT1_POS_Y + TEXT_HEIGHT + 20, TEXT_WIDTH, TEXT_HEIGHT,
                              hwnd, NULL, NULL, NULL);
 }
 
