@@ -4,9 +4,7 @@
     #define UNICODE
 #endif
 
-#include <tchar.h>
-#include <windows.h>
-#include <stdio.h>
+#include "KeyboardTester.h"
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
@@ -14,7 +12,6 @@ char *replaceWord(const char *, const char *, const char *);
 char *replaceChar(char *, char, char);
 void display(char *, HWND);
 char *replaceChar(char *, char);
-HWND textField;
 char * str = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'_TAB_PAGEUP_ESC_DEL_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END_BACKSPACE_F1_F2_F3";
 
 /*  Make the class name into a global variable  */
@@ -199,12 +196,12 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 str = replaceWord(str, "F7", "_");
                 display(str, hwnd);
                 break;
-            /*default:
+            default:
                 if((wParam > 61 && wParam < 123) || (wParam > 47 && wParam < 58)) {
                     str = replaceChar(str, (char) wParam, '_');
                     printf("%s  %d\n", str, strlen(str));
                     display(str, hwnd);
-                }*/
+                }
             }
             break;
         case WM_DESTROY:
@@ -217,79 +214,3 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     return 0;
 }
 
-char *replaceWord(const char *s, const char *oldW, const char *newW){
-    char *result;
-    int i, cnt = 0;
-    int newWlen = strlen(newW);
-    int oldWlen = strlen(oldW);
-
-    // Counting the number of times old word
-    // occur in the string
-    for (i = 0; s[i] != '\0'; i++){
-        if (strstr(&s[i], oldW) == &s[i]){
-            cnt++;
-            // Jumping to index after the old word.
-            i += oldWlen - 1;
-        }
-    }
-
-    // Making new string of enough length
-    result = (char *)malloc(i + cnt * (newWlen - oldWlen) + 1);
-
-    i = 0;
-    while (*s){
-        // compare the substring with the result
-        if (strstr(s, oldW) == s){
-            strcpy(&result[i], newW);
-            i += newWlen;
-            s += oldWlen;
-        }
-        else
-            result[i++] = *s++;
-    }
-
-    result[i] = '\0';
-    return result;
-}
-
-void display(char * str, HWND hwnd){
-    textField = CreateWindow("STATIC",
-                             str,
-                             WS_VISIBLE|WS_CHILD|WS_BORDER,
-                             20, 20, 1000, 100,
-                             hwnd, NULL, NULL, NULL);
-}
-
-char *replaceChar(char *s, char charToReplace){
-    int i, j = 0, cnt = 0;
-
-    for(i = 0; i < strlen(s); i++) {
-        if(s[i] == charToReplace) {
-            cnt++;
-        }
-    }
-
-    char * result = (char *) malloc(strlen(s) - cnt);
-
-    for(i = 0; i < strlen(s); i++) {
-        if(s[i] != charToReplace) {
-            result[j] = s[i];
-            j++;
-        }
-    }
-    return result;
-}
-
-char *replaceChar(char *s, char charToReplace, char replacement){
-   char * result = (char *) malloc(strlen(s));
-    int i = 0;
-
-    for(i = 0; i < strlen(s); i++) {
-        if(s[i] == charToReplace) {
-            result[i] = replacement;
-        }else{
-            result[i] = s[i];
-        }
-    }
-    return result;
-}
