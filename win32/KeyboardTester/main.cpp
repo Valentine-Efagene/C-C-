@@ -12,7 +12,7 @@ char *replaceWord(const char *, const char *, const char *);
 char *replaceChar(char *, char, char);
 void display(char *, HWND);
 char *replaceChar(char *, char);
-char * str = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'_TAB_PAGEUP_ESC_DEL_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END_BACKSPACE_F1_F2_F3";
+char * str = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'_TAB_PAGEUP_ESC_DEL_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END_BACKSPACE_F1_F2_F4_F5_F6_F7_F8_F9_F10_F11_F12_PRINTSCREEN_INSERT";
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
@@ -90,6 +90,120 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         case WM_CREATE:
             display(str, hwnd);
 
+        case WM_KEYDOWN:
+            switch (wParam)
+            {
+                case VK_LEFT:
+                    str = replaceWord(str, "LEFT", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_RIGHT:
+                    str = replaceWord(str, "RIGHT", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_UP:
+                    str = replaceWord(str, "UP", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_DOWN:
+                    str = replaceWord(str, "DOWN", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_HOME:
+                    str = replaceWord(str, "HOME", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_END:
+                    str = replaceWord(str, "END", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_INSERT:
+                    str = replaceWord(str, "INSERT", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_DELETE:
+                    str = replaceWord(str, "DELETE", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F1:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F2:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F3:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F4:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F5:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F6:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F7:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F8:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F9:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F10:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F11:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_F12:
+                    str = replaceWord(str, "F2", "_");
+                    display(str, hwnd);
+                    break;
+
+                case VK_SNAPSHOT:
+                    str = replaceWord(str, "F2", "PRINTSCREEN");
+                    display(str, hwnd);
+                    break;
+
+                // Process other non-character keystrokes.
+
+                default:
+                    break;
+            }
+
         case WM_CHAR:
             switch (wParam){
             case 0x5B:
@@ -120,86 +234,13 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 str = replaceChar(str, (char) wParam, '_');
                 display(str, hwnd);
                 break;
-            case VK_BACK:
-                str = replaceWord(str, "BACKSPACE", "_");
-                display(str, hwnd);
-                break;
             case VK_TAB:
                 str = replaceWord(str, "TAB", "_");
-                display(str, hwnd);
-                break;
-            case VK_MENU:
-                str = replaceWord(str, "ALT", "_");
-                display(str, hwnd);
-                break;
-            case VK_CAPITAL:
-                str = replaceWord(str, "CAPSLOCK", "_");
-                display(str, hwnd);
-                break;
-            case VK_HOME:
-                str = replaceWord(str, "HOME", "_");
-                display(str, hwnd);
-                break;
-            case VK_PRIOR:
-                str = replaceWord(str, "PAGEUP", "_");
-                display(str, hwnd);
-                break;
-            case VK_END:
-                str = replaceWord(str, "END", "_");
-                display(str, hwnd);
-                break;
-            case VK_LEFT:
-                str = replaceWord(str, "LEFT", "_");
-                display(str, hwnd);
-                break;
-            case VK_RIGHT:
-                str = replaceWord(str, "RIGHT", "_");
-                display(str, hwnd);
-                break;
-            case VK_UP:
-                str = replaceWord(str, "UP", "_");
-                display(str, hwnd);
-                break;
-            case VK_DOWN:
-                str = replaceWord(str, "DOWN", "_");
-                display(str, hwnd);
-                break;
-            case VK_DELETE:
-                str = replaceWord(str, "DELETE", "_");
-                display(str, hwnd);
-                break;
-            case VK_F1:
-                str = replaceWord(str, "F1", "_");
-                display(str, hwnd);
-                break;
-            case VK_F2:
-                str = replaceWord(str, "F2", "_");
-                display(str, hwnd);
-                break;
-            case VK_F3:
-                str = replaceWord(str, "F3", "_");
-                display(str, hwnd);
-                break;
-            case VK_F4:
-                str = replaceWord(str, "F4", "_");
-                display(str, hwnd);
-                break;
-            case VK_F5:
-                str = replaceWord(str, "F5", "_");
-                display(str, hwnd);
-                break;
-            case VK_F6:
-                str = replaceWord(str, "F6", "_");
-                display(str, hwnd);
-                break;
-            case VK_F7:
-                str = replaceWord(str, "F7", "_");
                 display(str, hwnd);
                 break;
             default:
                 if((wParam > 61 && wParam < 123) || (wParam > 47 && wParam < 58)) {
                     str = replaceChar(str, (char) wParam, '_');
-                    printf("%s  %d\n", str, strlen(str));
                     display(str, hwnd);
                 }
             }

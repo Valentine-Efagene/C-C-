@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <stdio.h>
 
-#define TEXT_WIDTH 900
+#define TEXT_WIDTH 1000
 #define TEXT_HEIGHT 20
 
 HWND textField;
@@ -75,13 +75,17 @@ char *replaceChar(char *s, char charToReplace){
 
 char *replaceChar(char *s, char charToReplace, char replacement){
    char * result = (char *) malloc(strlen(s));
-    int i = 0;
+    int i = 0, cnt = 0;
 
-    for(i = 0; i < strlen(s); i++) {
-        if(s[i] == charToReplace) {
-            result[i] = replacement;
-        }else{
-            result[i] = s[i];
+    if( (int) charToReplace > 65 && (int) charToReplace < 91 ) {
+        return s;
+    }else {
+        for(i = 0; i < strlen(s); i++) {
+            if(s[i] == charToReplace) {
+                result[i] = replacement;
+            }else{
+                result[i] = s[i];
+            }
         }
     }
     return result;
