@@ -5,41 +5,27 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Function to replace a string with another
-// string
-char *replaceChar(char *s, char oldChar, char newChar){
-    int i, j = 0, cnt = 0;
+char *replaceChar(char *s, char charToReplace, char replacement){
+    char * result = (char *) malloc(strlen(s));
+    int i = 0;
 
     for(i = 0; i < strlen(s); i++) {
-        if(s[i] == oldChar) {
-            cnt++;
-        }
-    }
-
-    char * result = (char *) malloc(strlen(s) - cnt);
-
-    for(i = 0; i < strlen(s); i++) {
-        if(s[i] != oldChar) {
-            result[j] = s[i];
-            j++;
+        if(s[i] == charToReplace) {
+            result[i] = '_';
+        }else{
+            result[i] = s[i];
         }
     }
     return result;
 }
 
-// Driver Program
 int main(){
-    char * originalStr = "A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z";
-    char c = 'A';
-    char d = '_';
-    char * result;
+    int i;
 
-    // oldW string
-    printf("Old string: %s", originalStr);
-
-    result = replaceChar(originalStr, c, d);
-    printf("New String: %s", result);
-
-    free(result);
+    for(i = 33; i < 127; i++){
+        printf("%c", (char)i);
+    }
     return 0;
 }
+
+

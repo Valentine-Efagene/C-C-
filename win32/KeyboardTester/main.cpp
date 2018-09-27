@@ -11,10 +11,11 @@
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 char *replaceWord(const char *, const char *, const char *);
-void display(char *, HWND);
 char *replaceChar(char *, char, char);
+void display(char *, HWND);
+char *replaceChar(char *, char);
 HWND textField;
-char * str = "A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z";
+char * str = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'_TAB_PAGEUP_ESC_DEL_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END_BACKSPACE_F1_F2_F3";
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
@@ -93,10 +94,117 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             display(str, hwnd);
 
         case WM_CHAR:
-            if(wParam > 32 && wParam < 127) {
+            switch (wParam){
+            case 0x5B:
                 str = replaceChar(str, (char) wParam, '_');
-                printf("%s", str);
                 display(str, hwnd);
+                break;
+            case 0x3B:
+                str = replaceChar(str, (char) wParam, '_');
+                display(str, hwnd);
+                break;
+            case 0x5C:
+                str = replaceChar(str, (char) wParam, '_');
+                display(str, hwnd);
+                break;
+            case 0x2F:
+                str = replaceChar(str, (char) wParam, '_');
+                display(str, hwnd);
+                break;
+            case 0x2D:
+                str = replaceChar(str, (char) wParam, '_');
+                display(str, hwnd);
+                break;
+            case 0x2C:
+                str = replaceChar(str, (char) wParam, '_');
+                display(str, hwnd);
+                break;
+            case 0x60:
+                str = replaceChar(str, (char) wParam, '_');
+                display(str, hwnd);
+                break;
+            case VK_BACK:
+                str = replaceWord(str, "BACKSPACE", "_");
+                display(str, hwnd);
+                break;
+            case VK_TAB:
+                str = replaceWord(str, "TAB", "_");
+                display(str, hwnd);
+                break;
+            case VK_MENU:
+                str = replaceWord(str, "ALT", "_");
+                display(str, hwnd);
+                break;
+            case VK_CAPITAL:
+                str = replaceWord(str, "CAPSLOCK", "_");
+                display(str, hwnd);
+                break;
+            case VK_HOME:
+                str = replaceWord(str, "HOME", "_");
+                display(str, hwnd);
+                break;
+            case VK_PRIOR:
+                str = replaceWord(str, "PAGEUP", "_");
+                display(str, hwnd);
+                break;
+            case VK_END:
+                str = replaceWord(str, "END", "_");
+                display(str, hwnd);
+                break;
+            case VK_LEFT:
+                str = replaceWord(str, "LEFT", "_");
+                display(str, hwnd);
+                break;
+            case VK_RIGHT:
+                str = replaceWord(str, "RIGHT", "_");
+                display(str, hwnd);
+                break;
+            case VK_UP:
+                str = replaceWord(str, "UP", "_");
+                display(str, hwnd);
+                break;
+            case VK_DOWN:
+                str = replaceWord(str, "DOWN", "_");
+                display(str, hwnd);
+                break;
+            case VK_DELETE:
+                str = replaceWord(str, "DELETE", "_");
+                display(str, hwnd);
+                break;
+            case VK_F1:
+                str = replaceWord(str, "F1", "_");
+                display(str, hwnd);
+                break;
+            case VK_F2:
+                str = replaceWord(str, "F2", "_");
+                display(str, hwnd);
+                break;
+            case VK_F3:
+                str = replaceWord(str, "F3", "_");
+                display(str, hwnd);
+                break;
+            case VK_F4:
+                str = replaceWord(str, "F4", "_");
+                display(str, hwnd);
+                break;
+            case VK_F5:
+                str = replaceWord(str, "F5", "_");
+                display(str, hwnd);
+                break;
+            case VK_F6:
+                str = replaceWord(str, "F6", "_");
+                display(str, hwnd);
+                break;
+            case VK_F7:
+                str = replaceWord(str, "F7", "_");
+                display(str, hwnd);
+                break;
+            /*default:
+                if((wParam > 61 && wParam < 123) || (wParam > 47 && wParam < 58)) {
+                    str = replaceChar(str, (char) wParam, '_');
+                    printf("%s  %d\n", str, strlen(str));
+                    display(str, hwnd);
+                }*/
             }
             break;
         case WM_DESTROY:
@@ -148,15 +256,15 @@ void display(char * str, HWND hwnd){
     textField = CreateWindow("STATIC",
                              str,
                              WS_VISIBLE|WS_CHILD|WS_BORDER,
-                             20, 20, 300, 25,
+                             20, 20, 1000, 100,
                              hwnd, NULL, NULL, NULL);
 }
 
-char *replaceChar(char *s, char oldChar, char newChar){
+char *replaceChar(char *s, char charToReplace){
     int i, j = 0, cnt = 0;
 
     for(i = 0; i < strlen(s); i++) {
-        if(s[i] == oldChar) {
+        if(s[i] == charToReplace) {
             cnt++;
         }
     }
@@ -164,9 +272,23 @@ char *replaceChar(char *s, char oldChar, char newChar){
     char * result = (char *) malloc(strlen(s) - cnt);
 
     for(i = 0; i < strlen(s); i++) {
-        if(s[i] != oldChar) {
+        if(s[i] != charToReplace) {
             result[j] = s[i];
             j++;
+        }
+    }
+    return result;
+}
+
+char *replaceChar(char *s, char charToReplace, char replacement){
+   char * result = (char *) malloc(strlen(s));
+    int i = 0;
+
+    for(i = 0; i < strlen(s); i++) {
+        if(s[i] == charToReplace) {
+            result[i] = replacement;
+        }else{
+            result[i] = s[i];
         }
     }
     return result;

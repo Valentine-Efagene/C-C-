@@ -44,9 +44,9 @@ char *replaceWord(const char *s, const char *oldW, const char *newW){
 
 // Driver Program
 int main(){
-    char str[] = "xxforxx";
-    char c[] = "xx";
-    char d[] = "Geeks";
+    char str[] = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'_PAGEUP_ESC_DEL_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END_BACKSPACE_F1_F2_F3";;
+    char c[] = "RIGHT";
+    char d[] = "_";
 
     char *result = NULL;
 
