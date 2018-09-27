@@ -13,7 +13,7 @@ char *replaceChar(char *, char, char);
 void display(char *, HWND);
 char *replaceChar(char *, char);
 char * str1 = "abcdefghijklmnopqrstuvwxyz0123456789-]\/\.[`;\'";
-char * str2 = " TAB_PAGEUP_PAGEDOWN_ESC_DELETE_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END BACKSPACE_PRINTSCREEN_INSERT_LWIN_SHIFT_CTRL F1_F2_F4_F5_F6_F7_F8_F9_F10_F11_F12";
+char * str2 = " TAB_PAGEUP_PAGEDOWN_ESC_DELETE_ENTER_UP_DOWN_RIGHT_LEFT_HOME_END BACKSPACE_PRINTSCREEN_INSERT_LWIN_SHIFT_CTRL F1_F2_F3_F4_F5_F6_F7_F8_F9_F10_F11_F12";
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
@@ -57,7 +57,7 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
            CW_USEDEFAULT,       /* Windows decides the position */
            CW_USEDEFAULT,       /* where the window ends up on the screen */
            TEXT_WIDTH + 35,                 /* The programs width */
-           TEXT1_POS_Y + 2 * TEXT_HEIGHT + 100,                 /* and height in pixels */
+           TEXT1_POS_Y + TEXT_HEIGHT_1 + TEXT_HEIGHT_2 + 100,                 /* and height in pixels */
            HWND_DESKTOP,        /* The window is a child-window to desktop */
            NULL,                /* No menu */
            hThisInstance,       /* Program Instance handler */
@@ -206,6 +206,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     break;
 
                 case VK_SNAPSHOT:
+                    puts("printscreen");
                     str2 = replaceWord(str2, "PRINTSCREEN", "_");
                     display2(str2, hwnd);
                     break;
