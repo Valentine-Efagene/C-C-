@@ -30,7 +30,7 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     wincl.hInstance = hThisInstance;
     wincl.lpszClassName = szClassName;
     wincl.lpfnWndProc = WindowProcedure;      /* This function is called by windows */
-    wincl.style = CS_DBLCLKS | CS_VREDRAW|CS_HREDRAW;                 /* Catch double-clicks */
+    wincl.style = CS_DBLCLKS;// | CS_VREDRAW|CS_HREDRAW;                 /* Catch double-clicks */
     wincl.cbSize = sizeof (WNDCLASSEX);
 
     /* Use default icon and mouse-pointer */
@@ -55,8 +55,8 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
            WS_OVERLAPPEDWINDOW, /* default window */
            CW_USEDEFAULT,       /* Windows decides the position */
            CW_USEDEFAULT,       /* where the window ends up on the screen */
-           544,                 /* The programs width */
-           375,                 /* and height in pixels */
+           TEXT_WIDTH + 70,                 /* The programs width */
+           TEXT_HEIGHT + 80,                 /* and height in pixels */
            HWND_DESKTOP,        /* The window is a child-window to desktop */
            NULL,                /* No menu */
            hThisInstance,       /* Program Instance handler */

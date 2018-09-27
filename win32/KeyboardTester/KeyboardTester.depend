@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1538033719 source:c:\users\valentyne\documents\codeblocks\cpp\win32\keyboardtester\main.cpp
+1538035080 source:c:\users\valentyne\documents\codeblocks\cpp\win32\keyboardtester\main.cpp
 	"KeyboardTester.h"
 
-1538033718 c:\users\valentyne\documents\codeblocks\cpp\win32\keyboardtester\keyboardtester.h
+1538035092 c:\users\valentyne\documents\codeblocks\cpp\win32\keyboardtester\keyboardtester.h
 	<tchar.h>
 	<windows.h>
 	<stdio.h>
